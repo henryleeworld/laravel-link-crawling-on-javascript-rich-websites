@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCrawlersTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -20,7 +20,7 @@ class CreateCrawlersTable extends Migration
             $table->integer('status');
             $table->string('path')->nullable();
             $table->timestamps();
-            $table->index(['name']);
+            $table->index(['name', 'url']);
         });
     }
 
@@ -33,4 +33,4 @@ class CreateCrawlersTable extends Migration
     {
         Schema::dropIfExists('crawlers');
     }
-}
+};

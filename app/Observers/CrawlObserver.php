@@ -3,10 +3,10 @@
 namespace App\Observers;
 
 use App\Models\Crawler;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\UriInterface;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Log;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\UriInterface;
 use Spatie\Crawler\CrawlObservers\CrawlObserver as BaseCrawlObserver;
 
 class CrawlObserver extends BaseCrawlObserver

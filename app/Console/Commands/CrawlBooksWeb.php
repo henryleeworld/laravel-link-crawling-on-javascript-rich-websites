@@ -24,27 +24,15 @@ class CrawlBooksWeb extends Command
     protected $description = 'Crawl Books Web';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
-     *
-     * @return int
      */
     public function handle()
     {
         Crawler::create()->setBrowsershot(new Browsershot)
-                         ->executeJavaScript()
-                         ->ignoreRobots()
-                         ->setCrawlObserver(new CrawlObserver(['name' => 'books']))
-                         ->startCrawling('https://www.books.com.tw');
+            ->executeJavaScript()
+            ->ignoreRobots()
+            ->setCrawlObserver(new CrawlObserver(['name' => 'books', 'domain' => 'books.com.tw']))
+            ->startCrawling('https://www.books.com.tw');
         return Command::SUCCESS;
     }
 }

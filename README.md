@@ -1,4 +1,4 @@
-# Laravel 11 豐富的 JavaScript 產生網站內容上抓取連結
+# Laravel 12 豐富的 JavaScript 產生網站內容上抓取連結
 
 網站內容動態地以 Javascript 呈現出來，因此雖然在瀏覽器上看到，但下載回來的 HTML 檔卻不會含有資料，要解決這個問題需要能夠先運行 Javascript 程式，畢竟 JavaScript 為使用者帶來更良好的體驗及使用，為了讓 JavaScript 內容被爬取、渲染並且索引，耗費的資源是一般 HTML 頁面的 20 倍，一定要格外小心。
 
@@ -36,5 +36,5 @@ $ php artisan crawl:books
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/d7M5nd0.png)
+![](https://i.imgur.com/35AePTf.png)
 > 開始搜尋特定的已知網頁組合，然後再跟隨該等網頁的超連結，存取其他網頁、接著再跟隨其他網頁的超連結，存取更多網頁，據此不斷進行此作業

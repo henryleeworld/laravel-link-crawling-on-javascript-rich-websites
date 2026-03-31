@@ -6,6 +6,7 @@ use App\Observers\CrawlObserver;
 use Illuminate\Console\Command;
 use Spatie\Browsershot\Browsershot;
 use Spatie\Crawler\Crawler;
+use Spatie\Crawler\JavaScriptRenderers\BrowsershotRenderer;
 
 class CrawlBooksWeb extends Command
 {
@@ -26,13 +27,17 @@ class CrawlBooksWeb extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
-        Crawler::create()->setBrowsershot(new Browsershot)
-            ->executeJavaScript()
+        $browsershot = (new Browsershot())
+            ->setNodeModulePath(base_path('node_modules'));
+        Crawler::create('https://www.books.com.tw')
+            ->executeJavaScript(new BrowsershotRenderer($browsershot))
             ->ignoreRobots()
-            ->setCrawlObserver(new CrawlObserver(['name' => 'books', 'domain' => 'books.com.tw']))
-            ->startCrawling('https://www.books.com.tw');
+            ->retry(2, 500)
+            ->withoutVerifying()
+            ->addObserver(new CrawlObserver(['name' => 'books', 'domain' => 'books.com.tw']))
+            ->start();
         return Command::SUCCESS;
     }
 }
